@@ -1,0 +1,238 @@
+:root {
+  --color-background: #eef3f5;
+  --color-card: #ffffff;
+  --color-text: #21313a;
+  --color-muted: #71808a;
+  --color-border: #dce5e8;
+  --color-accent: #257c78;
+  --color-accent-dark: #1b625f;
+  --color-danger: #b65f64;
+  --color-danger-soft: #fff1f1;
+  --shadow-card: 0 20px 50px rgba(37, 65, 74, 0.12);
+  --radius-card: 22px;
+  --radius-control: 11px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 32px 16px;
+  display: grid;
+  place-items: center;
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at top right, #d8eeeb 0, transparent 34%),
+    var(--color-background);
+  font-family: "Avenir Next", "PingFang TC", "Noto Sans TC", sans-serif;
+}
+
+.todo-card {
+  width: min(100%, 520px);
+  padding: clamp(24px, 6vw, 42px);
+  background: var(--color-card);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.todo-header {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 12px 0 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.todo-form input {
+  min-width: 0;
+  flex: 1;
+  padding: 13px 15px;
+  color: var(--color-text);
+  background: #f8fafb;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.todo-form input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(37, 124, 120, 0.14);
+}
+
+.todo-form button,
+.clear-button,
+.delete-button {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.todo-form button {
+  padding: 0 20px;
+  color: #fff;
+  background: var(--color-accent);
+  border-radius: var(--radius-control);
+  font-weight: 700;
+}
+
+.todo-form button:hover {
+  background: var(--color-accent-dark);
+}
+
+.todo-form button:active,
+.delete-button:active,
+.clear-button:active {
+  transform: scale(0.97);
+}
+
+.todo-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  animation: reveal 220ms ease both;
+}
+
+.todo-checkbox {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.todo-text {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.todo-item.completed .todo-text {
+  color: var(--color-muted);
+  text-decoration: line-through;
+  opacity: 0.68;
+}
+
+.delete-button {
+  padding: 6px 9px;
+  color: var(--color-danger);
+  background: transparent;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.delete-button:hover {
+  background: var(--color-danger-soft);
+}
+
+.empty-state {
+  margin: 18px 0 24px;
+  color: var(--color-muted);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.todo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 18px;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+  font-size: 0.88rem;
+}
+
+.clear-button {
+  padding: 5px 0;
+  color: var(--color-accent);
+  background: transparent;
+  font-size: 0.85rem;
+}
+
+.clear-button:hover {
+  color: var(--color-accent-dark);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    padding: 16px 10px;
+  }
+
+  .todo-card {
+    padding: 26px 18px;
+  }
+
+  .todo-form button {
+    padding: 0 15px;
+  }
+}
